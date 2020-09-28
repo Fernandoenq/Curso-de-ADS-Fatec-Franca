@@ -1,0 +1,9 @@
+Produto  	Quantidade
+Calça	10
+Meia       	20	
+Sapato     	43
+Camisa     	74
+Bolsa      	23
+Carteira   	34
+Cinto      	21
+
