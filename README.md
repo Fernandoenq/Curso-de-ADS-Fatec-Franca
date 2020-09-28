@@ -1,2 +1,2 @@
 # Curso de ADS Fatec Franca
- Repositório de exercicíos do curso.
+ Repositório com exercícios do curso de ADS
