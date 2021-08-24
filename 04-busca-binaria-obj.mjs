@@ -1,6 +1,6 @@
 let comps
 
-function buscaBinaria(vetor, valorBusca){
+function buscaBinaria(vetor, fnComp){
     comps = 0
     let ini = 0
     let fim = vetor.length - 1
@@ -12,42 +12,21 @@ function buscaBinaria(vetor, valorBusca){
 
         switch(fnComp(vetor[meio])){
             case 0:     //Encontrando o valor de busca
+                comps++
                 return meio
             
             case 1:     //Valor de busca > valor do meio do vetor
+                comps += 2
                 ini = meio + 1
                 break
             
             default: // -1, valor de busca < menor do meio do vetor
+                comps += 2
                 fim = meio -1
 
         }
-
-        //Se o valor de busca for igual ao valor do vetor
-        //na posição do meio, encontramos o que procuramos
-        //e retornamos a posição onde encontramos
-        if(valorBusca === vetor[meio]) {
-            comps++
-            return meio
-        }
-        //Senão, se o valor de busca for maior que o valor
-        //do meio do vetor, descartamos a metade esquerda
-        // do vetor trazendo o ponteiro ini para meio + 1
-        else if(valorBusca > vetor[meio]){
-            ini = meio + 1
-            comps += 2 
-        } 
-
-        //Por fim, caso o valor de busca seja menor que o
-        //valor do meio do vetor, descartamos a metade direita
-        //do vetor trazendo o ponteiro fim para o meio -1
-
-        else{
-            fim = meio - 1
-            comps += 2
-        } 
-
     }
+
 
     //Se chegarmos até aqui, significa que fim < ini e, portanto,
     //o valor de busca não existe no vetor. Para indicar isso,
@@ -74,3 +53,31 @@ function comparar(valorMeio, valorBusca = 'FERNANDO'){
     else if(valorBusca > valorMeio.first_name) return 1
     else return -1
 }
+
+import { objNomes } from './data/vetor-obj-nomes.mjs'
+
+console.log('Posiçã de first_name === Fernando', buscaBinaria(objNomes,comparar))
+console.log('Comparações:', comps)
+
+console.log('Posição de first_name === ULISSES', buscaBinaria(objNomes, 
+    (valorMeio, valorBusca = 'ULISSES') => {
+        if(valorBusca === valorMeio.first_name) return 0
+        else if (valorBusca > valorMeio.first_name) return 1
+        else return -1
+    }
+))
+console.log('Comparações:', comps)
+
+/* terminar
+começa a função binária (ela tem dois valores)
+    vetor com os nomes e o resultado da função comparar
+        "comparar" começa com 2 valores valorMeio(valor do meio do vetor definido na função binária) e valorBusca(nome da pessoa)
+            ela pega o valor meio e ve se o nome dentro do mio é igual ao procurado, se sim retorna 0, se maior retorna 0 e se nao retorna -1
+função binária pega o tamanho do vetor e da pra variavel 'fim', e pega a metade desse damanho e da para o 'meio'
+
+faz um switch  
+    se o resultado da do comparar for
+        0 = adiciona +1 no contador e retorn valor do valorMeio
+        1 = adiciona +2 no contador e 
+
+*/
